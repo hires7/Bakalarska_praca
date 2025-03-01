@@ -1,12 +1,69 @@
 ﻿<Window x:Class="Bakalarska_praca.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Bakalarska_praca"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Bakalarska praca" Height="600" Width="1000">
     <Grid>
+        <Menu VerticalAlignment="Top" Height="25">
+            <MenuItem Header="Používateľ">
+                <MenuItem Header="Prihlásiť" />
+                <MenuItem Header="Odhlásiť" />
+                <MenuItem Header="Zmeniť heslo" />
+            </MenuItem>
+            <MenuItem Header="Číselníky">
+                <MenuItem Header="Používatelia" />
+                <MenuItem Header="Partneri" />
+                <MenuItem Header="Vozidlá" />
+                <MenuItem Header="Druhy materiálu" />
+            </MenuItem>
+            <MenuItem Header="Váženie">
+                <MenuItem Header="Nastaviť taru" />
+                <MenuItem Header="Príjemka" />
+                <MenuItem Header="Výdajka" />
+                <MenuItem Header="Upraviť váženie"   />
+                <MenuItem Header="Vymazať váženie" />
+                <MenuItem Header="Tlačiť vážny lístok"   />
+                <MenuItem Header="Tlačiť prehľad" />
+            </MenuItem>
+            <MenuItem Header="Nastavenia">
+                <MenuItem Header="Nastaviť komunikáciu s váhou" />
+                <MenuItem Header="O programe" />
+            </MenuItem>
+        </Menu>
 
+        <StackPanel Orientation="Horizontal" Margin="10,35,10,499" Height="25">
+            <Button Content="Nastaviť taru" Width="100" />
+            <Button Content="Príjemka" Width="100" Click="Button_Click" />
+            <Button Content="Výdajka" Width="100" />
+            <Button Content="Upraviť váženie" Width="120" />
+            <Button Content="Vymazať váženie" Width="120"  />
+            <Button Content="Tlačiť vážny lístok" Width="150"  />
+            <Button Content="Tlačiť prehľad" Width="120" />
+        </StackPanel>
+
+        <TabControl Margin="10,218,10,0">
+            <TabItem Header="Dnešné váženia" />
+            <TabItem Header="Tento týždeň" />
+            <TabItem Header="Zadané obdobie" />
+        </TabControl>
+
+        <DataGrid Name="dataGridWeighings" AutoGenerateColumns="False" Margin="10,246,10,50">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Číslo" Width="Auto" />
+                <DataGridTextColumn Header="Typ" Width="Auto" />
+                <DataGridTextColumn Header="Dátum a čas" Width="150" />
+                <DataGridTextColumn Header="Partner" Width="Auto" />
+                <DataGridTextColumn Header="Vozidlo" Width="Auto" />
+                <DataGridTextColumn Header="Vystavil" Width="Auto" />
+                <DataGridTextColumn Header="Materiál" Width="Auto" />
+                <DataGridTextColumn Header="Brutto" Width="Auto" />
+                <DataGridTextColumn Header="Tara" Width="Auto" />
+                <DataGridTextColumn Header="Netto" Width="Auto" />
+                <DataGridTextColumn Header="Poznámka" Width="Auto" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StatusBar VerticalAlignment="Bottom">
+            <StatusBarItem Content="Prihlásený používateľ: ..." />
+        </StatusBar>
     </Grid>
 </Window>
