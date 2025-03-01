@@ -1,13 +1,14 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
+using Bakalarska_praca.Data.Database;
 
 namespace Bakalarska_praca;
 
-/// <summary>
-/// Interaction logic for App.xaml
-/// </summary>
 public partial class App : Application
 {
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        DatabaseInitializer.Initialize();
+        DatabaseInitializer.CreateAdminUser();
+        base.OnStartup(e);
+    }
 }
-

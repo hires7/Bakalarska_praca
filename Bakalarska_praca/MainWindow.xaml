@@ -32,7 +32,7 @@
 
         <StackPanel Orientation="Horizontal" Margin="10,35,10,499" Height="25">
             <Button Content="Nastaviť taru" Width="100" />
-            <Button Content="Príjemka" Width="100" Click="Button_Click" />
+            <Button Content="Príjemka" Width="100" />
             <Button Content="Výdajka" Width="100" />
             <Button Content="Upraviť váženie" Width="120" />
             <Button Content="Vymazať váženie" Width="120"  />
