@@ -1,4 +1,5 @@
-﻿using Bakalarska_praca.UI.Views;
+﻿using Bakalarska_praca.Core.Services;
+using Bakalarska_praca.UI.Views;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,10 +22,17 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
+
     private void Login_Click(object sender, RoutedEventArgs e)
     {
         LoginView loginWindow = new LoginView();
         loginWindow.ShowDialog();
+    }
+
+    private void Logout_Click(object sender, RoutedEventArgs e)
+    {
+        // Reset používateľa
+        UserService.Logout();
     }
 
 }

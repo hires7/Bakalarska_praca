@@ -6,7 +6,7 @@
         <Menu VerticalAlignment="Top" Height="25">
             <MenuItem Header="Používateľ">
                 <MenuItem Header="Prihlásiť" Click="Login_Click" />
-                <MenuItem Header="Odhlásiť" />
+                <MenuItem Header="Odhlásiť" Click="Logout_Click"/>
                 <MenuItem Header="Zmeniť heslo" />
             </MenuItem>
             <MenuItem Header="Číselníky">
@@ -63,7 +63,7 @@
         </DataGrid>
 
         <StatusBar VerticalAlignment="Bottom">
-            <StatusBarItem Content="Prihlásený používateľ: ..." />
+            <StatusBarItem Content="Prihlásený používateľ: ..." /> 
         </StatusBar>
     </Grid>
 </Window>

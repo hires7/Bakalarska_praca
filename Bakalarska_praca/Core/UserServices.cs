@@ -6,6 +6,8 @@ namespace Bakalarska_praca.Core.Services;
 public class UserService
 {
     private const string ConnectionString = "Data Source=weighing.db;Version=3;";
+    
+    public static string CurrentUser { get; private set; } = "Neprihlásený";
 
     public bool ValidateUser(string username, string password)
     {
@@ -23,7 +25,20 @@ public class UserService
         if (result == null)
             return false;
 
-        return BCrypt.Net.BCrypt.Verify(password, result.ToString());
+        if (BCrypt.Net.BCrypt.Verify(password, result.ToString()))
+        {
+            CurrentUser = username;
+            return true;
+        }
+
+        return false;
     }
 
+    public static void Logout()
+    {
+        CurrentUser = "Neprihlásený";
+    }
+
+
 }
+
