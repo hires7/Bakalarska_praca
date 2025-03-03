@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Bakalarska_praca.UI.Views;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -20,4 +21,10 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
+    private void Login_Click(object sender, RoutedEventArgs e)
+    {
+        LoginView loginWindow = new LoginView();
+        loginWindow.ShowDialog();
+    }
+
 }

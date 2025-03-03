@@ -5,7 +5,7 @@
     <Grid>
         <Menu VerticalAlignment="Top" Height="25">
             <MenuItem Header="Používateľ">
-                <MenuItem Header="Prihlásiť" />
+                <MenuItem Header="Prihlásiť" Click="Login_Click" />
                 <MenuItem Header="Odhlásiť" />
                 <MenuItem Header="Zmeniť heslo" />
             </MenuItem>
