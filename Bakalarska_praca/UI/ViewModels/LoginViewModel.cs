@@ -58,6 +58,10 @@ public class LoginViewModel : INotifyPropertyChanged
     {
         if (_userService.ValidateUser(Username, Password))
         {
+            if (parameter is Window loginWindow)
+            {
+                loginWindow.Close();
+            }
             MainWindow mainWindow = new MainWindow();
             Application.Current.MainWindow.Close();
             Application.Current.MainWindow = mainWindow;
