@@ -5,7 +5,6 @@ using System.Windows.Input;
 using Bakalarska_praca.Core.Services;
 using Bakalarska_praca.UI.Commands;
 
-
 namespace Bakalarska_praca.UI.ViewModels;
 
 public class LoginViewModel : INotifyPropertyChanged
@@ -42,15 +41,20 @@ public class LoginViewModel : INotifyPropertyChanged
 
     public ICommand LoginCommand { get; }
 
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
+
 
     public LoginViewModel()
     {
+        _username = string.Empty;
+        _password = string.Empty;
+        _errorMessage = string.Empty;
         _userService = new UserService();
         LoginCommand = new RelayCommand(ExecuteLogin);
     }
 
-    private void ExecuteLogin(object parameter)
+
+    private void ExecuteLogin(object? parameter)
     {
         if (_userService.ValidateUser(Username, Password))
         {
@@ -67,7 +71,7 @@ public class LoginViewModel : INotifyPropertyChanged
     }
 
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
