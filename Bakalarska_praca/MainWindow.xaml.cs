@@ -1,4 +1,5 @@
 ﻿using Bakalarska_praca.Core.Services;
+using Bakalarska_praca.UI.ViewModels;
 using Bakalarska_praca.UI.Views;
 using System.Text;
 using System.Windows;
@@ -31,8 +32,34 @@ public partial class MainWindow : Window
 
     private void Logout_Click(object sender, RoutedEventArgs e)
     {
-        // Reset používateľa
         UserService.Logout();
+        Console.WriteLine(" Používateľ odhlásený.");
+
+        if (Application.Current.Windows.OfType<LoginView>().FirstOrDefault() is LoginView loginWindow)
+        {
+            loginWindow.Show();
+        }
+        else
+        {
+            loginWindow = new LoginView();
+            loginWindow.Show();
+        }
+
+        Application.Current.MainWindow.Hide(); // Skryjeme MainWindow namiesto jeho zavretia
+
+        if (loginWindow.DataContext is LoginViewModel loginViewModel)
+        {
+            loginViewModel.ShowError = false;
+        }
+
+        if (loginWindow.DataContext is MainViewModel mainViewModel)
+        {
+            mainViewModel.RefreshUser();
+        }
     }
 
+
+
 }
+
+

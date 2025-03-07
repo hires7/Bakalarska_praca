@@ -60,12 +60,24 @@ public class LoginViewModel : INotifyPropertyChanged
         {
             if (parameter is Window loginWindow)
             {
-                loginWindow.Close();
+                loginWindow.Hide();
             }
-            MainWindow mainWindow = new MainWindow();
-            Application.Current.MainWindow.Close();
-            Application.Current.MainWindow = mainWindow;
-            mainWindow.Show();
+
+            if (Application.Current.MainWindow is MainWindow existingMainWindow)
+            {
+                existingMainWindow.Show();
+            }
+            else
+            {
+                MainWindow mainWindow = new MainWindow();
+                Application.Current.MainWindow = mainWindow;
+                mainWindow.Show();
+            }
+
+            if (Application.Current.MainWindow.DataContext is MainViewModel mainViewModel)
+            {
+                mainViewModel.RefreshUser();
+            }
         }
         else
         {

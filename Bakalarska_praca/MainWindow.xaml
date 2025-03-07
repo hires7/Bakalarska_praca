@@ -5,9 +5,9 @@
     <Grid>
         <Menu VerticalAlignment="Top" Height="25">
             <MenuItem Header="Používateľ">
-                <MenuItem Header="Prihlásiť" Click="Login_Click" />
-                <MenuItem Header="Odhlásiť" Click="Logout_Click"/>
-                <MenuItem Header="Zmeniť heslo" />
+                <MenuItem Header="Prihlásiť" Click="Login_Click" IsEnabled="{Binding CanLogin}" />
+                <MenuItem Header="Odhlásiť" Click="Logout_Click" IsEnabled="{Binding CanLogout}" />
+                <MenuItem Header="Zmeniť heslo" IsEnabled="{Binding CanLogout}" />
             </MenuItem>
             <MenuItem Header="Číselníky">
                 <MenuItem Header="Používatelia" />

@@ -20,6 +20,7 @@ public class UserService
         if (BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
         {
             CurrentUser = user.Username;
+            Console.WriteLine($"Prihlásený používateľ: {CurrentUser}");
             return true;
         }
 
@@ -30,6 +31,7 @@ public class UserService
     public static void Logout()
     {
         CurrentUser = "Neprihlásený";
+        Console.WriteLine("Odhlasujem používateľa...");
     }
 
     public User? GetUser(string username)
