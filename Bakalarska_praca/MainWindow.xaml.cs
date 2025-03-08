@@ -45,7 +45,7 @@ public partial class MainWindow : Window
             loginWindow.Show();
         }
 
-        Application.Current.MainWindow.Hide(); // Skryjeme MainWindow namiesto jeho zavretia
+        Application.Current.MainWindow.Hide();
 
         if (loginWindow.DataContext is LoginViewModel loginViewModel)
         {
@@ -57,6 +57,13 @@ public partial class MainWindow : Window
             mainViewModel.RefreshUser();
         }
     }
+
+    private void ChangePassword_Click(object sender, RoutedEventArgs e)
+    {
+        ChangePasswordView changePasswordView = new ChangePasswordView();
+        changePasswordView.ShowDialog();
+    }
+
 
 
 
