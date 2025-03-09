@@ -1,17 +1,25 @@
 ﻿<Window x:Class="Bakalarska_praca.UI.Views.UsersView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Zoznam používateľov" Height="400" Width="600"
+        Title="Zoznam používateľov" Height="450" Width="650"
         WindowStartupLocation="CenterScreen">
 
     <Grid>
+        <Menu VerticalAlignment="Top">
+            <MenuItem Header="Pridať" Command="{Binding AddUserCommand}"/>
+            <MenuItem Header="Upraviť" Command="{Binding EditUserCommand}" IsEnabled="{Binding CanEditDelete}"/>
+            <MenuItem Header="Vymazať" Command="{Binding DeleteUserCommand}" IsEnabled="{Binding CanEditDelete}"/>
+            <MenuItem Header="Zmeniť heslo" Command="{Binding ChangePasswordCommand}" IsEnabled="{Binding CanEditDelete}"/>
+        </Menu>
+
         <DataGrid ItemsSource="{Binding Users}" AutoGenerateColumns="False" CanUserAddRows="False"
-                  SelectionMode="Single" IsReadOnly="True" Margin="10">
+          SelectionMode="Single" IsReadOnly="True" Margin="10,40,10,10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                 <DataGridTextColumn Header="Login" Binding="{Binding Username}" Width="150"/>
-                <DataGridTextColumn Header="Meno" Binding="{Binding Name}" Width="250"/>
+                <DataGridTextColumn Header="Rola" Binding="{Binding Role}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
+
     </Grid>
 </Window>

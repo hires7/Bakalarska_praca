@@ -1,4 +1,6 @@
 ﻿using System.Data.SQLite;
+using System.Windows;
+using System.Xml.Linq;
 using Bakalarska_praca.Core.Models;
 using BCrypt.Net;
 
@@ -115,12 +117,47 @@ public class UserService
                 Id = reader.GetInt32(0),
                 Username = reader.GetString(1),
                 PasswordHash = reader.GetString(2),
-                Role = reader.GetString(2)
+                Role = reader.GetString(3)
             });
         }
 
         return users;
     }
+
+
+
+    public static bool AddUser(string username, string password, bool isAdmin)
+    {
+        using var connection = new SQLiteConnection("Data Source=weighing.db;Version=3;");
+        connection.Open();
+
+        string checkSql = "SELECT COUNT(*) FROM Users WHERE Username = @username";
+        using var checkCommand = new SQLiteCommand(checkSql, connection);
+        checkCommand.Parameters.AddWithValue("@username", username);
+        int userExists = Convert.ToInt32(checkCommand.ExecuteScalar());
+
+        if (userExists > 0)
+        {
+            return false;
+        }
+
+        string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+
+        string role = isAdmin ? "Admin" : "User";
+
+        string insertSql = "INSERT INTO Users (Username, PasswordHash, Role) VALUES (@username, @password, @role)";
+        using var insertCommand = new SQLiteCommand(insertSql, connection);
+        insertCommand.Parameters.AddWithValue("@username", username);
+        insertCommand.Parameters.AddWithValue("@password", hashedPassword);
+        insertCommand.Parameters.AddWithValue("@role", role);
+
+        int rowsAffected = insertCommand.ExecuteNonQuery();
+        return rowsAffected > 0;
+    }
+
+
+
+
 }
 
 
