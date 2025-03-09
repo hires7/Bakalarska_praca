@@ -64,6 +64,11 @@ public partial class MainWindow : Window
         changePasswordView.ShowDialog();
     }
 
+    private void Users_Click(object sender, RoutedEventArgs e)
+    {
+        UsersView usersView = new UsersView();
+        usersView.ShowDialog();
+    }
 
 
 

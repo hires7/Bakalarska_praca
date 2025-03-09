@@ -10,7 +10,7 @@
                 <MenuItem Header="Zmeniť heslo" Click="ChangePassword_Click" Visibility="{Binding CanLogout}" />
             </MenuItem>
             <MenuItem Header="Číselníky">
-                <MenuItem Header="Používatelia" />
+                <MenuItem Header="Používatelia" Click="Users_Click"/>
                 <MenuItem Header="Partneri" />
                 <MenuItem Header="Vozidlá" />
                 <MenuItem Header="Druhy materiálu" />

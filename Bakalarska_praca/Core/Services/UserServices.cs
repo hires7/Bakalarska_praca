@@ -97,5 +97,32 @@ public class UserService
     }
 
 
+    public static List<User> GetAllUsers()
+    {
+        List<User> users = new();
 
+        using var connection = new SQLiteConnection("Data Source=weighing.db;Version=3;");
+        connection.Open();
+
+        string sql = "SELECT Id, Username, PasswordHash, Role FROM Users";
+        using var command = new SQLiteCommand(sql, connection);
+        using var reader = command.ExecuteReader();
+
+        while (reader.Read())
+        {
+            users.Add(new User
+            {
+                Id = reader.GetInt32(0),
+                Username = reader.GetString(1),
+                PasswordHash = reader.GetString(2),
+                Role = reader.GetString(2)
+            });
+        }
+
+        return users;
+    }
 }
+
+
+
+
