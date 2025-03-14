@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using Bakalarska_praca.Core.Services;
-using Bakalarska_praca.UI.Commands;
+
 
 namespace Bakalarska_praca.UI.ViewModels;
 

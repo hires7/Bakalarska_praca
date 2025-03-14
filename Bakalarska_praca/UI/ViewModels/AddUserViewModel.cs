@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using Bakalarska_praca.Core.Services;
-using Bakalarska_praca.UI.Commands;
+
 
 namespace Bakalarska_praca.UI.ViewModels;
 
@@ -34,6 +34,8 @@ public class AddUserViewModel : BaseViewModel
 
     public AddUserViewModel()
     {
+        _username = string.Empty;
+        _password = string.Empty;
         _userService = new UserService();
         AddCommand = new RelayCommand(ExecuteAddUser);
     }

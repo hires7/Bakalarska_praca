@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Bakalarska_praca.UI.Commands;
 using Bakalarska_praca.UI.ViewModels;
 
 namespace Bakalarska_praca.UI.Views;

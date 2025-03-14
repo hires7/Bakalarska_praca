@@ -165,6 +165,23 @@ public class UserService
         command.ExecuteNonQuery();
     }
 
+    public static bool UpdateUser(User user)
+    {
+        using var connection = DatabaseHelper.GetConnection();
+        connection.Open();
+
+        string sql = "UPDATE Users SET Username = @username, Role = @role WHERE Id = @id;";
+        using var command = new SQLiteCommand(sql, connection);
+        command.Parameters.AddWithValue("@username", user.Username);
+        command.Parameters.AddWithValue("@role", user.Role);
+        command.Parameters.AddWithValue("@id", user.Id);
+
+        int rowsAffected = command.ExecuteNonQuery();
+
+        return rowsAffected > 0;
+    }
+
+
 }
 
 
