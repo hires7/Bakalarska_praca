@@ -21,6 +21,7 @@ public class UsersViewModel : BaseViewModel
 
     public UsersViewModel()
     {
+        _users = new ObservableCollection<User>();
         LoadUsers();
         AddUserCommand = new RelayCommand(ExecuteAddUser);
     }
