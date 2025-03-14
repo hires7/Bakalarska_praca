@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Xml.Linq;
 using Bakalarska_praca.Core.Models;
+using Bakalarska_praca.Data.Database;
 using BCrypt.Net;
 
 namespace Bakalarska_praca.Core.Services;
@@ -124,8 +125,6 @@ public class UserService
         return users;
     }
 
-
-
     public static bool AddUser(string username, string password, bool isAdmin)
     {
         using var connection = new SQLiteConnection("Data Source=weighing.db;Version=3;");
@@ -155,8 +154,16 @@ public class UserService
         return rowsAffected > 0;
     }
 
+    public static void DeleteUser(int userId)
+    {
+        using var connection = DatabaseHelper.GetConnection();
+        connection.Open();
 
-
+        string sql = "DELETE FROM Users WHERE Id = @id;";
+        using var command = new SQLiteCommand(sql, connection);
+        command.Parameters.AddWithValue("@id", userId);
+        command.ExecuteNonQuery();
+    }
 
 }
 

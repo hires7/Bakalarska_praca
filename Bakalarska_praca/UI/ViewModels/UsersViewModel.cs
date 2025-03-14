@@ -17,13 +17,22 @@ public class UsersViewModel : BaseViewModel
         set { _users = value; OnPropertyChanged(); }
     }
 
+    private User? _selectedUser;
+    public User? SelectedUser
+    {
+        get => _selectedUser;
+        set { _selectedUser = value; OnPropertyChanged(); }
+    }
+
     public ICommand AddUserCommand { get; }
+    public ICommand DeleteUserCommand { get; }
 
     public UsersViewModel()
     {
         _users = new ObservableCollection<User>();
         LoadUsers();
         AddUserCommand = new RelayCommand(ExecuteAddUser);
+        DeleteUserCommand = new RelayCommand(ExecuteDeleteUser, CanDeleteUser);
     }
 
     private void LoadUsers()
@@ -37,5 +46,29 @@ public class UsersViewModel : BaseViewModel
         AddUserView addUserView = new AddUserView();
         addUserView.ShowDialog();
         LoadUsers();
+    }
+
+    private bool CanDeleteUser(object? parameter)
+    {
+        return SelectedUser != null;
+    }
+
+    private void ExecuteDeleteUser(object? parameter)
+    {
+        if (SelectedUser == null)
+            return;
+
+        MessageBoxResult result = MessageBox.Show(
+            $"Naozaj chcete odstrániť používateľa {SelectedUser.Username}?",
+            "Potvrdenie",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Warning
+        );
+
+        if (result == MessageBoxResult.Yes)
+        {
+            UserService.DeleteUser(SelectedUser.Id);
+            Users.Remove(SelectedUser);
+        }
     }
 }
