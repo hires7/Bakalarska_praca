@@ -21,6 +21,18 @@ namespace Bakalarska_praca.Data.Database
 
             Console.WriteLine("Tabulka USERS vytvorena");
 
+            string sqlMaterials = @"CREATE TABLE IF NOT EXISTS Materials (
+                                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                    Name TEXT UNIQUE NOT NULL,
+                                    HumidityType REAL NOT NULL,
+                                    Coefficient REAL NOT NULL);";
+
+            using var commandMaterials = new SQLiteCommand(sqlMaterials, connection);
+            commandMaterials.ExecuteNonQuery();
+
+            Console.WriteLine("Tabuľka MATERIALS vytvorená");
+
+
         }
 
         public static void CreateAdminUser()

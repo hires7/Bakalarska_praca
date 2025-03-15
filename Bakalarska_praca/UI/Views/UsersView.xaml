@@ -7,9 +7,10 @@
     <Grid>
         <Menu VerticalAlignment="Top">
             <MenuItem Header="Pridať" Command="{Binding AddUserCommand}"/>
-            <MenuItem Header="Upraviť" Command="{Binding EditUserCommand}" IsEnabled="{Binding SelectedUser}"/>
+            <MenuItem Header="Upraviť" Command="{Binding EditUserCommand}" IsEnabled="{Binding CanEditDelete}"/>
             <MenuItem Header="Vymazať" Command="{Binding DeleteUserCommand}" IsEnabled="{Binding CanEditDelete}"/>
             <MenuItem Header="Zmeniť heslo" Command="{Binding ChangePasswordCommand}" IsEnabled="{Binding CanEditDelete}"/>
+
         </Menu>
 
         <DataGrid ItemsSource="{Binding Users}" AutoGenerateColumns="False" CanUserAddRows="False"
@@ -21,14 +22,5 @@
                 <DataGridTextColumn Header="Rola" Binding="{Binding Role}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
-
-        <Menu VerticalAlignment="Top">
-            <MenuItem Header="Pridať" Command="{Binding AddUserCommand}"/>
-            <MenuItem Header="Upraviť" Command="{Binding EditUserCommand}" IsEnabled="{Binding SelectedUser}"/>
-            <MenuItem Header="Vymazať" Command="{Binding DeleteUserCommand}" IsEnabled="{Binding SelectedUser}"/>
-            <MenuItem Header="Zmeniť heslo" Command="{Binding ChangePasswordCommand}" IsEnabled="{Binding SelectedUser}"/>
-        </Menu>
-
-
     </Grid>
 </Window>

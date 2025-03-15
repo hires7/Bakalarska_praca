@@ -13,7 +13,7 @@
                 <MenuItem Header="Používatelia" Click="Users_Click"/>
                 <MenuItem Header="Partneri" />
                 <MenuItem Header="Vozidlá" />
-                <MenuItem Header="Druhy materiálu" />
+                <MenuItem Header="Druhy materiálu" Click="OpenMaterialsView"/>
             </MenuItem>
             <MenuItem Header="Váženie">
                 <MenuItem Header="Nastaviť taru" />

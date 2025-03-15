@@ -70,6 +70,11 @@ public partial class MainWindow : Window
         usersView.ShowDialog();
     }
 
+    private void OpenMaterialsView(object sender, RoutedEventArgs e)
+    {
+        MaterialsView materialsView = new MaterialsView();
+        materialsView.ShowDialog();
+    }
 
 
 }

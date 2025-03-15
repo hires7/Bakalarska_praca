@@ -2,7 +2,6 @@
 using System.Windows.Input;
 using Bakalarska_praca.Core.Services;
 
-
 namespace Bakalarska_praca.UI.ViewModels;
 
 public class ChangePasswordViewModel : BaseViewModel
@@ -41,8 +40,15 @@ public class ChangePasswordViewModel : BaseViewModel
     public bool ShowError
     {
         get => _showError;
-        set { _showError = value; OnPropertyChanged(); }
+        set
+        {
+            _showError = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(ErrorVisibility));
+        }
     }
+
+    public Visibility ErrorVisibility => ShowError ? Visibility.Visible : Visibility.Collapsed;
 
     public ICommand ChangePasswordCommand { get; }
 

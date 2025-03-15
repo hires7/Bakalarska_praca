@@ -9,14 +9,9 @@ namespace Bakalarska_praca.UI.ViewModels;
 
 public class UsersViewModel : BaseViewModel
 {
-    private ObservableCollection<User> _users;
     private User? _selectedUser;
 
-    public ObservableCollection<User> Users
-    {
-        get => _users;
-        set { _users = value; OnPropertyChanged(); }
-    }
+    public ObservableCollection<User> Users { get; set; } = new();
 
     public User? SelectedUser
     {
@@ -25,56 +20,65 @@ public class UsersViewModel : BaseViewModel
         {
             _selectedUser = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(CanEditDelete));
+
             ((RelayCommand)EditUserCommand).RaiseCanExecuteChanged();
             ((RelayCommand)DeleteUserCommand).RaiseCanExecuteChanged();
+            ((RelayCommand)ChangePasswordCommand).RaiseCanExecuteChanged();
         }
     }
+
+
+    public bool CanEditDelete => SelectedUser != null;
 
     public ICommand AddUserCommand { get; }
     public ICommand EditUserCommand { get; }
     public ICommand DeleteUserCommand { get; }
+    public ICommand ChangePasswordCommand { get; }
 
     public UsersViewModel()
     {
-        _users = new ObservableCollection<User>();
         LoadUsers();
-
         AddUserCommand = new RelayCommand(ExecuteAddUser);
-        EditUserCommand = new RelayCommand(ExecuteEditUser, CanExecuteEditDelete);
-        DeleteUserCommand = new RelayCommand(ExecuteDeleteUser, CanExecuteEditDelete);
+        EditUserCommand = new RelayCommand(ExecuteEditUser, _ => CanEditDelete);
+        DeleteUserCommand = new RelayCommand(ExecuteDeleteUser, _ => CanEditDelete);
+        ChangePasswordCommand = new RelayCommand(ExecuteChangePassword, _ => CanEditDelete);
     }
 
     private void LoadUsers()
     {
-        Users = new ObservableCollection<User>(UserService.GetAllUsers());
+        Users.Clear();
+        foreach (var user in UserService.GetAllUsers())
+        {
+            Users.Add(user);
+        }
     }
 
     private void ExecuteAddUser(object? parameter)
     {
-        AddUserView addUserView = new AddUserView();
-        addUserView.ShowDialog();
-        LoadUsers();
-    }
-
-    private bool CanExecuteEditDelete(object? parameter)
-    {
-        return SelectedUser != null;
+        var addUserView = new AddUserView();
+        if (addUserView.ShowDialog() == true)
+        {
+            LoadUsers();
+        }
     }
 
     private void ExecuteEditUser(object? parameter)
     {
         if (SelectedUser == null) return;
 
-        EditUserView editUserView = new EditUserView(SelectedUser);
-        editUserView.ShowDialog();
-        LoadUsers();
+        var editUserView = new EditUserView(SelectedUser);
+        if (editUserView.ShowDialog() == true)
+        {
+            LoadUsers();
+        }
     }
 
     private void ExecuteDeleteUser(object? parameter)
     {
         if (SelectedUser == null) return;
 
-        MessageBoxResult result = MessageBox.Show($"Naozaj chcete vymazať používateľa {SelectedUser.Username}?",
+        var result = MessageBox.Show($"Naozaj chcete vymazať používateľa {SelectedUser.Username}?",
             "Potvrdenie", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
         if (result == MessageBoxResult.Yes)
@@ -82,5 +86,13 @@ public class UsersViewModel : BaseViewModel
             UserService.DeleteUser(SelectedUser.Id);
             LoadUsers();
         }
+    }
+
+    private void ExecuteChangePassword(object? parameter)
+    {
+        if (SelectedUser == null) return;
+
+        ChangePasswordView changePasswordView = new ChangePasswordView();
+        changePasswordView.ShowDialog();
     }
 }
