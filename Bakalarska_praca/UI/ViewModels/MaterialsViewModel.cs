@@ -23,6 +23,9 @@ namespace Bakalarska_praca.UI.ViewModels
                 OnPropertyChanged(nameof(CanEditDelete));
                 Console.WriteLine($"SelectedMaterial zmenené: {(_selectedMaterial != null ? _selectedMaterial.Name : "null")}");
                 Console.WriteLine($"CanEditDelete: {CanEditDelete}");
+                ((RelayCommand)EditMaterialCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)DeleteMaterialCommand).RaiseCanExecuteChanged();
+
             }
         }
 
