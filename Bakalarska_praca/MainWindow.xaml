@@ -3,32 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Bakalarska praca" Height="600" Width="1000">
     <Grid>
-        <Menu VerticalAlignment="Top" Height="25">
+        <Menu VerticalAlignment="Top">
             <MenuItem Header="Používateľ">
-                <MenuItem Header="Prihlásiť" Click="Login_Click" Visibility="{Binding CanLogin}" />
-                <MenuItem Header="Odhlásiť" Click="Logout_Click" Visibility="{Binding CanLogout}" />
-                <MenuItem Header="Zmeniť heslo" Click="ChangePassword_Click" Visibility="{Binding CanLogout}" />
+                <MenuItem Header="Prihlásiť" Click="Login_Click" IsEnabled="{Binding CanLogin}"/>
+                <MenuItem Header="Odhlásiť" Click="Logout_Click" IsEnabled="{Binding CanLogout}"/>
+                <MenuItem Header="Zmeniť heslo" Click="ChangePassword_Click" IsEnabled="{Binding IsLoggedIn}"/>
             </MenuItem>
-            <MenuItem Header="Číselníky">
+
+            <MenuItem Header="Číselníky" IsEnabled="{Binding IsLoggedIn}">
                 <MenuItem Header="Používatelia" Click="Users_Click"/>
-                <MenuItem Header="Partneri" />
-                <MenuItem Header="Vozidlá" />
                 <MenuItem Header="Druhy materiálu" Click="OpenMaterialsView"/>
             </MenuItem>
-            <MenuItem Header="Váženie">
-                <MenuItem Header="Nastaviť taru" />
-                <MenuItem Header="Príjemka" />
-                <MenuItem Header="Výdajka" />
-                <MenuItem Header="Upraviť váženie"   />
-                <MenuItem Header="Vymazať váženie" />
-                <MenuItem Header="Tlačiť vážny lístok"   />
-                <MenuItem Header="Tlačiť prehľad" />
+
+            <MenuItem Header="Váženie" IsEnabled="{Binding IsLoggedIn}">
+                <MenuItem Header="Nastaviť taru"/>
+                <MenuItem Header="Príjemka"/>
             </MenuItem>
-            <MenuItem Header="Nastavenia">
-                <MenuItem Header="Nastaviť komunikáciu s váhou" />
-                <MenuItem Header="O programe" />
+
+            <MenuItem Header="Nastavenia" IsEnabled="{Binding IsLoggedIn}">
+                <MenuItem Header="O programe"/>
             </MenuItem>
         </Menu>
+
 
         <StackPanel Orientation="Horizontal" Margin="10,35,10,499" Height="25">
             <Button Content="Nastaviť taru" Width="100" />
