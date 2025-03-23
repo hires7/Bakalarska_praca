@@ -12,6 +12,8 @@
 
             <MenuItem Header="Číselníky" IsEnabled="{Binding IsLoggedIn}">
                 <MenuItem Header="Používatelia" Click="Users_Click"/>
+                <MenuItem Header="Partneri"/>
+                <MenuItem Header="Vozidladb"/>
                 <MenuItem Header="Druhy materiálu" Click="OpenMaterialsView"/>
             </MenuItem>
 
