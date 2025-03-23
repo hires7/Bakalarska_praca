@@ -51,5 +51,11 @@ namespace Bakalarska_praca
             MaterialsView materialsView = new MaterialsView();
             materialsView.ShowDialog();
         }
+        private void OpenDriversView(object sender, RoutedEventArgs e)
+        {
+            var driversView = new DriversView();
+            driversView.ShowDialog();
+        }
+
     }
 }

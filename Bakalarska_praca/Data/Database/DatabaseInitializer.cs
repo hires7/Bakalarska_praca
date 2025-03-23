@@ -32,6 +32,15 @@ namespace Bakalarska_praca.Data.Database
 
             Console.WriteLine("Tabuľka MATERIALS vytvorená");
 
+            string sqlDrivers = @"CREATE TABLE IF NOT EXISTS Drivers (
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        FirstName TEXT NOT NULL,
+                        LastName TEXT NOT NULL);";
+
+            using var commandDrivers = new SQLiteCommand(sqlDrivers, connection);
+            commandDrivers.ExecuteNonQuery();
+
+            Console.WriteLine("Tabuľka DRIVERS vytvorená");
 
         }
 
@@ -46,7 +55,7 @@ namespace Bakalarska_praca.Data.Database
 
             if (userExists == 0)
             {
-                string hash = BCrypt.Net.BCrypt.HashPassword("admin123"); // docasne hashovanie, TODO pozriet nieco dalsie
+                string hash = BCrypt.Net.BCrypt.HashPassword("admin123");
                 string sql = "INSERT INTO Users (Username, PasswordHash, Role) VALUES ('admin', @password, 'Admin');";
 
                 using var command = new SQLiteCommand(sql, connection);
