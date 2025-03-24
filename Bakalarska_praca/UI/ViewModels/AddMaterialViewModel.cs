@@ -8,8 +8,8 @@ namespace Bakalarska_praca.UI.ViewModels
     public class AddMaterialViewModel : BaseViewModel
     {
         private string _name = string.Empty;
-        private double _humidityType;
-        private double _coefficient;
+        private string _humidityType = "";
+        private string _coefficient = "";
         private readonly Window _window;
 
         public string Name
@@ -18,13 +18,13 @@ namespace Bakalarska_praca.UI.ViewModels
             set { _name = value; OnPropertyChanged(); }
         }
 
-        public double HumidityType
+        public string HumidityType
         {
             get => _humidityType;
             set { _humidityType = value; OnPropertyChanged(); }
         }
 
-        public double Coefficient
+        public string Coefficient
         {
             get => _coefficient;
             set { _coefficient = value; OnPropertyChanged(); }
@@ -40,16 +40,33 @@ namespace Bakalarska_praca.UI.ViewModels
 
         private void ExecuteSave(object? parameter)
         {
+            if (!double.TryParse(HumidityType, out var humidity))
+            {
+                MessageBox.Show("Zadaj platné číslo pre typ vlhkosti.");
+                return;
+            }
+
+            if (!double.TryParse(Coefficient, out var coefficient))
+            {
+                MessageBox.Show("Zadaj platné číslo pre koeficient.");
+                return;
+            }
+
             var material = new Material
             {
                 Name = Name,
-                HumidityType = HumidityType,
-                Coefficient = Coefficient
+                HumidityType = humidity,
+                Coefficient = coefficient
             };
 
             MaterialService.AddMaterial(material);
-            _window.DialogResult = true;
-            _window.Close();
+
+            if (parameter is Window window)
+            {
+                window.DialogResult = true;
+                window.Close();
+            }
         }
+
     }
 }
