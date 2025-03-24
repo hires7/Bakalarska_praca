@@ -61,12 +61,10 @@ namespace Bakalarska_praca.UI.ViewModels
 
             MaterialService.AddMaterial(material);
 
-            if (parameter is Window window)
-            {
-                window.DialogResult = true;
-                window.Close();
-            }
+            _window.DialogResult = true;
+            _window.Close();
         }
+
 
     }
 }
