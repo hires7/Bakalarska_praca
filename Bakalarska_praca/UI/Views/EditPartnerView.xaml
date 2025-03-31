@@ -1,0 +1,45 @@
+﻿<Window x:Class="Bakalarska_praca.UI.Views.EditPartnerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Upraviť partnera" Height="500" Width="400"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+
+                <TextBlock Text="Názov spoločnosti:" />
+                <TextBox Text="{Binding Name}" Margin="0,5,0,10"/>
+
+                <TextBlock Text="Ulica:" />
+                <TextBox Text="{Binding Street}" Margin="0,5,0,10"/>
+
+                <TextBlock Text="Mesto:" />
+                <TextBox Text="{Binding City}" Margin="0,5,0,10"/>
+
+                <TextBlock Text="PSČ:" />
+                <TextBox Text="{Binding ZipCode}" Margin="0,5,0,10"/>
+
+                <TextBlock Text="IČO:" />
+                <TextBox Text="{Binding ICO}" Margin="0,5,0,10"/>
+
+                <TextBlock Text="DIČ:" />
+                <TextBox Text="{Binding DIC}" Margin="0,5,0,10"/>
+
+                <TextBlock Text="IČ DPH:" />
+                <TextBox Text="{Binding IC_DPH}" Margin="0,5,0,10"/>
+
+                <CheckBox Content="Dodávateľ" IsChecked="{Binding IsSupplier}" Margin="0,5,0,5"/>
+                <CheckBox Content="Odberateľ" IsChecked="{Binding IsCustomer}" Margin="0,0,0,15"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Uložiť"
+                            Command="{Binding SaveCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                            Width="100" Margin="0,0,10,0"/>
+                    <Button Content="Zrušiť" Width="100" Click="Cancel_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

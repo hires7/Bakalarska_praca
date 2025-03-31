@@ -44,6 +44,24 @@ namespace Bakalarska_praca.Data.Database
 
             Console.WriteLine("Tabuľka DRIVERS vytvorená");
 
+            string sqlPartners = @"CREATE TABLE IF NOT EXISTS Partners (
+                                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                    Name TEXT NOT NULL,
+                                    Street TEXT,
+                                    City TEXT,
+                                    ZipCode TEXT,
+                                    ICO TEXT,
+                                    DIC TEXT,
+                                    IC_DPH TEXT,
+                                    IsSupplier INTEGER NOT NULL,
+                                    IsCustomer INTEGER NOT NULL
+                                );";
+
+            using var commandPartners = new SQLiteCommand(sqlPartners, connection);
+            commandPartners.ExecuteNonQuery();
+            Console.WriteLine("Tabuľka PARTNERS vytvorená");
+
+
         }
 
         public static void CreateAdminUser()

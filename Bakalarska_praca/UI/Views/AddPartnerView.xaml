@@ -1,0 +1,41 @@
+﻿<Window x:Class="Bakalarska_praca.UI.Views.AddPartnerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Pridať partnera" Height="450" Width="400"
+        WindowStartupLocation="CenterScreen">
+    <Border Background="White" Padding="20">
+        <StackPanel>
+            <TextBlock Text="Názov partnera:" />
+            <TextBox Text="{Binding Name}" Margin="0,5,0,10" />
+
+            <TextBlock Text="Ulica:" />
+            <TextBox Text="{Binding Street}" Margin="0,5,0,10" />
+
+            <TextBlock Text="Obec:" />
+            <TextBox Text="{Binding City}" Margin="0,5,0,10" />
+
+            <TextBlock Text="PSČ:" />
+            <TextBox Text="{Binding ZipCode}" Margin="0,5,0,10" />
+
+            <TextBlock Text="IČO:" />
+            <TextBox Text="{Binding ICO}" Margin="0,5,0,10" />
+
+            <TextBlock Text="DIČ:" />
+            <TextBox Text="{Binding DIC}" Margin="0,5,0,10" />
+
+            <TextBlock Text="IČ DPH:" />
+            <TextBox Text="{Binding IC_DPH}" Margin="0,5,0,10" />
+
+            <CheckBox Content="Dodávateľ" IsChecked="{Binding IsSupplier}" Margin="0,10,0,0" />
+            <CheckBox Content="Odberateľ" IsChecked="{Binding IsCustomer}" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+                <Button Content="Uložiť"
+                        Command="{Binding SaveCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                        Width="100"/>
+                <Button Content="Zrušiť" Click="Cancel_Click" Width="100" Margin="10,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

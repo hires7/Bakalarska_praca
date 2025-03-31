@@ -57,5 +57,12 @@ namespace Bakalarska_praca
             driversView.ShowDialog();
         }
 
+        private void OpenPartnersClick(object sender, RoutedEventArgs e)
+        {
+            var partnersView = new PartnersView();
+            partnersView.ShowDialog();
+        }
+
+
     }
 }
