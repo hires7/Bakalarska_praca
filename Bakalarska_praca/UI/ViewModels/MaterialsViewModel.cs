@@ -40,6 +40,19 @@ namespace Bakalarska_praca.UI.ViewModels
             }
         }
 
+        private bool _showInactive;
+        public bool ShowInactive
+        {
+            get => _showInactive;
+            set
+            {
+                _showInactive = value;
+                OnPropertyChanged();
+                LoadMaterials();
+            }
+        }
+
+
 
         public ICommand AddMaterialCommand { get; }
         public ICommand EditMaterialCommand { get; }
@@ -56,11 +69,13 @@ namespace Bakalarska_praca.UI.ViewModels
         private void LoadMaterials()
         {
             Materials.Clear();
-            foreach (var material in MaterialService.GetAllMaterials())
+            var materials = MaterialService.GetAllMaterials(ShowInactive);
+            foreach (var material in materials)
             {
                 Materials.Add(material);
             }
         }
+
 
         private void ExecuteAddMaterial(object? parameter)
         {

@@ -4,6 +4,7 @@ public class Material
 {
     public int Id { get; set; }
     public required string Name { get; set; }
-    public required double HumidityType { get; set; }
-    public required double Coefficient { get; set; }
+    public double HumidityType { get; set; }
+    public double Coefficient { get; set; }
+    public bool IsActive { get; set; } = true;
 }

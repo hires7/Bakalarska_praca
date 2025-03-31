@@ -25,7 +25,9 @@ namespace Bakalarska_praca.Data.Database
                                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     Name TEXT UNIQUE NOT NULL,
                                     HumidityType REAL NOT NULL,
-                                    Coefficient REAL NOT NULL);";
+                                    Coefficient REAL NOT NULL,
+                                    IsActive INTEGER NOT NULL DEFAULT 1);";
+
 
             using var commandMaterials = new SQLiteCommand(sqlMaterials, connection);
             commandMaterials.ExecuteNonQuery();

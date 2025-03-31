@@ -5,22 +5,27 @@
         WindowStartupLocation="CenterScreen">
 
     <Grid>
-        <Menu VerticalAlignment="Top">
-            <MenuItem Header="Pridať" Command="{Binding AddMaterialCommand}"/>
-            <MenuItem Header="Upraviť" Command="{Binding EditMaterialCommand}" IsEnabled="{Binding CanEditDelete}"/>
-            <MenuItem Header="Vymazať" Command="{Binding DeleteMaterialCommand}" IsEnabled="{Binding CanEditDelete}"/>
-        </Menu>
+        <StackPanel>
+            <Menu VerticalAlignment="Top">
+                <MenuItem Header="Pridať" Command="{Binding AddMaterialCommand}" />
+                <MenuItem Header="Upraviť" Command="{Binding EditMaterialCommand}" IsEnabled="{Binding CanEditDelete}" />
+                <MenuItem Header="Vymazať" Command="{Binding DeleteMaterialCommand}" IsEnabled="{Binding CanEditDelete}" />
+            </Menu>
 
-        <DataGrid ItemsSource="{Binding Materials}" AutoGenerateColumns="False" 
-          CanUserAddRows="False" SelectionMode="Single" IsReadOnly="True" 
-          Margin="10,40,10,10"
-          SelectedItem="{Binding SelectedMaterial, Mode=TwoWay}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
-                <DataGridTextColumn Header="Názov" Binding="{Binding Name}" Width="200"/>
-                <DataGridTextColumn Header="Typ vlhkosti" Binding="{Binding HumidityType}" Width="150"/>
-                <DataGridTextColumn Header="Koeficient" Binding="{Binding Coefficient}" Width="150"/>
-            </DataGrid.Columns>
-        </DataGrid>
+            <CheckBox Content="Zobraziť aj neaktívne" 
+                      IsChecked="{Binding ShowInactive, UpdateSourceTrigger=PropertyChanged}" 
+                      Margin="10,5,0,0"/>
+
+            <DataGrid ItemsSource="{Binding Materials}" AutoGenerateColumns="False" 
+                      CanUserAddRows="False" SelectionMode="Single" IsReadOnly="True" 
+                      Margin="10,5,10,10" SelectedItem="{Binding SelectedMaterial, Mode=TwoWay}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                    <DataGridTextColumn Header="Názov" Binding="{Binding Name}" Width="200"/>
+                    <DataGridTextColumn Header="Typ vlhkosti" Binding="{Binding HumidityType}" Width="150"/>
+                    <DataGridTextColumn Header="Koeficient" Binding="{Binding Coefficient}" Width="150"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </Grid>
 </Window>
