@@ -11,7 +11,6 @@ namespace Bakalarska_praca.UI.ViewModels
     {
         private Partner? _selectedPartner;
         public ObservableCollection<Partner> Partners { get; set; } = new();
-
         public Partner? SelectedPartner
         {
             get => _selectedPartner;
@@ -20,6 +19,8 @@ namespace Bakalarska_praca.UI.ViewModels
                 _selectedPartner = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CanEditDelete));
+                ((RelayCommand)EditPartnerCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)DeletePartnerCommand).RaiseCanExecuteChanged();
             }
         }
 

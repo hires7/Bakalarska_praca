@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Pridať partnera" Height="450" Width="400"
         WindowStartupLocation="CenterScreen">
-    <Border Background="White" Padding="20">
+    <Border Background="White" Padding="20" Margin="0,0,0,-72">
         <StackPanel>
             <TextBlock Text="Názov partnera:" />
             <TextBox Text="{Binding Name}" Margin="0,5,0,10" />

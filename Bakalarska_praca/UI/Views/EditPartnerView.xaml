@@ -1,11 +1,19 @@
 ﻿<Window x:Class="Bakalarska_praca.UI.Views.EditPartnerView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Upraviť partnera" Height="500" Width="400"
+        Title="Upraviť partnera" Height="505" Width="400"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
     <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="500*"/>
+            <RowDefinition Height="29*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="191*"/>
+            <ColumnDefinition Width="209*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,0,0,10">
             <StackPanel Margin="20">
 
                 <TextBlock Text="Názov spoločnosti:" />
