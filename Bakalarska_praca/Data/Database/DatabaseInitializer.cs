@@ -61,7 +61,6 @@ namespace Bakalarska_praca.Data.Database
                 using var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@password", hash);
                 command.ExecuteNonQuery();
-
                 Console.WriteLine("Admin ucet vytvoreny");
             }
         }
