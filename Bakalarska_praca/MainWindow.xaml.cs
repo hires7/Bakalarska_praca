@@ -63,6 +63,12 @@ namespace Bakalarska_praca
             partnersView.ShowDialog();
         }
 
+        private void Trucks_Click(object sender, RoutedEventArgs e)
+        {
+            TrucksView trucksView = new TrucksView();
+            trucksView.ShowDialog();
+        }
+
 
     }
 }

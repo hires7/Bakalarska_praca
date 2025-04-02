@@ -13,7 +13,7 @@
             <MenuItem Header="Číselníky" IsEnabled="{Binding IsLoggedIn}">
                 <MenuItem Header="Používatelia" Click="Users_Click"/>
                 <MenuItem Header="Partneri" Click="OpenPartnersClick"/>
-                <MenuItem Header="Vozidlá"/>
+                <MenuItem Header="Vozidlá" Click="Trucks_Click"/>
                 <MenuItem Header="Druhy materiálu" Click="OpenMaterialsView"/>
                 <MenuItem Header="Vodiči" Click="OpenDriversView"/>
             </MenuItem>

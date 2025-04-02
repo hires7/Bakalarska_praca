@@ -61,6 +61,18 @@ namespace Bakalarska_praca.Data.Database
             commandPartners.ExecuteNonQuery();
             Console.WriteLine("Tabuľka PARTNERS vytvorená");
 
+            string sqlTrucks = @"CREATE TABLE IF NOT EXISTS Trucks (
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        LicensePlate TEXT NOT NULL,
+                        Description TEXT,
+                        Tara REAL NOT NULL,
+                        IsInHouse INTEGER NOT NULL);";
+
+            using var commandTrucks = new SQLiteCommand(sqlTrucks, connection);
+            commandTrucks.ExecuteNonQuery();
+
+            Console.WriteLine("Tabuľka TRUCKS vytvorená.");
+
 
         }
 
