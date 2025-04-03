@@ -21,6 +21,9 @@ namespace Bakalarska_praca.UI.ViewModels
                 _selectedTruck = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CanEditDelete));
+                ((RelayCommand)EditTruckCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)DeleteTruckCommand).RaiseCanExecuteChanged();
+
             }
         }
 

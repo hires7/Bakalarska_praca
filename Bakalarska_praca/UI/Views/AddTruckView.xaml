@@ -13,8 +13,12 @@
             <TextBlock Text="Popis:" />
             <TextBox Text="{Binding Description}" Margin="0,5,0,10" />
 
-            <TextBlock Text="Tara (kg):" />
-            <TextBox Text="{Binding Tara}" Margin="0,5,0,10" />
+            <TextBlock Text="Tara (kg):" Margin="0,10,0,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBox Text="{Binding Tara}" Width="270" Margin="0,0,10,0"/>
+                <Button Content="Načítať" Command="{Binding LoadTaraCommand}" Width="80" />
+            </StackPanel>
+
 
             <CheckBox Content="Interné vozidlo" IsChecked="{Binding IsInHouse}" Margin="0,10,0,0"/>
 
