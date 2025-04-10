@@ -42,8 +42,35 @@ namespace Bakalarska_praca.UI.ViewModels
         private Material? _selectedMaterial;
 
 
-        public string Tara { get; set; } = "";
-        public string Brutto { get; set; } = "";
+        private string _tara = "";
+        public string Tara
+        {
+            get => _tara;
+            set
+            {
+                _tara = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(Netto));
+            }
+        }
+
+        private string _brutto = "";
+        public string Brutto
+        {
+            get => _brutto;
+            set
+            {
+                _brutto = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(Netto));
+            }
+        }
+
+        public string Netto =>
+            (double.TryParse(Brutto, out var b) && double.TryParse(Tara, out var t))
+                ? (b - t).ToString("F2")
+                : "";
+
         public DateTime Date { get; set; } = DateTime.Today;
         public DateTime BruttoTime { get; set; } = DateTime.Now;
         public DateTime TaraTime { get; set; } = DateTime.Now;

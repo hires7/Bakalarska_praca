@@ -76,4 +76,30 @@ public static class MaterialService
         command.ExecuteNonQuery();
     }
 
+    public static Material? GetMaterialById(int id)
+    {
+        using var connection = DatabaseHelper.GetConnection();
+        connection.Open();
+
+        string sql = "SELECT * FROM Materials WHERE Id = @id;";
+        using var command = new SQLiteCommand(sql, connection);
+        command.Parameters.AddWithValue("@id", id);
+
+        using var reader = command.ExecuteReader();
+        if (reader.Read())
+        {
+            return new Material
+            {
+                Id = Convert.ToInt32(reader["Id"]),
+                Name = reader["Name"].ToString() ?? "",
+                HumidityType = Convert.ToDouble(reader["HumidityType"]),
+                Coefficient = Convert.ToDouble(reader["Coefficient"]),
+                IsActive = Convert.ToInt32(reader["IsActive"]) == 1
+            };
+        }
+
+        return null;
+    }
+
+
 }

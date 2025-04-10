@@ -15,6 +15,7 @@ public class Weighing
 
     public double Brutto { get; set; }
     public double Tara { get; set; }
+    public double Netto => Brutto - Tara;
 
     public string Note { get; set; } = string.Empty;
 

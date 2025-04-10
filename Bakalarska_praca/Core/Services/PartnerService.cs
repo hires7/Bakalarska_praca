@@ -97,5 +97,37 @@ namespace Bakalarska_praca.Core.Services
 
             command.ExecuteNonQuery();
         }
+
+        public static Partner? GetPartnerById(int id)
+        {
+            using var connection = DatabaseHelper.GetConnection();
+            connection.Open();
+
+            string sql = "SELECT * FROM Partners WHERE Id = @id;";
+            using var command = new SQLiteCommand(sql, connection);
+            command.Parameters.AddWithValue("@id", id);
+
+            using var reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                return new Partner
+                {
+                    Id = reader.GetInt32(0),
+                    Name = reader.GetString(1),
+                    Street = reader.GetString(2),
+                    City = reader.GetString(3),
+                    ZipCode = reader.GetString(4),
+                    ICO = reader.GetString(5),
+                    DIC = reader.GetString(6),
+                    IC_DPH = reader.GetString(7),
+                    IsSupplier = reader.GetInt32(8) == 1,
+                    IsCustomer = reader.GetInt32(9) == 1
+                };
+            }
+
+            return null;
+        }
+
+
     }
 }

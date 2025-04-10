@@ -79,5 +79,33 @@ namespace Bakalarska_praca.Core.Services
 
             command.ExecuteNonQuery();
         }
+
+        public static Truck? GetTruckById(int id)
+        {
+            using var connection = DatabaseHelper.GetConnection();
+            connection.Open();
+
+            string sql = "SELECT * FROM Trucks WHERE Id = @id;";
+            using var command = new SQLiteCommand(sql, connection);
+            command.Parameters.AddWithValue("@id", id);
+
+            using var reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                return new Truck
+                {
+                    Id = reader.GetInt32(0),
+                    LicensePlate = reader.GetString(1),
+                    Description = reader.GetString(2),
+                    Tara = reader.GetDouble(3),
+                    IsInHouse = reader.GetInt32(4) == 1
+                };
+            }
+
+            return null;
+        }
+
+
     }
+
 }

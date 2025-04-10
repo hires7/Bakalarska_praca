@@ -1,39 +1,39 @@
 ﻿using Bakalarska_praca.Core.Services;
+using System.Collections.ObjectModel;
 
-namespace Bakalarska_praca.UI.ViewModels;
-
-public class MainViewModel : BaseViewModel
+namespace Bakalarska_praca.UI.ViewModels
 {
-    private bool _isLoggedIn;
-    public bool IsLoggedIn
+    public class MainViewModel : BaseViewModel
     {
-        get => _isLoggedIn;
-        set
+        public bool CanLogin => !UserService.IsLoggedIn;
+        public bool CanLogout => UserService.IsLoggedIn;
+        private bool _isLoggedIn;
+
+        public bool IsLoggedIn
         {
-            _isLoggedIn = value;
-            Console.WriteLine($"Aktualizácia IsLoggedIn: {_isLoggedIn}");
-            OnPropertyChanged();
+            get => _isLoggedIn;
+            set
+            {
+                _isLoggedIn = value;
+                Console.WriteLine($"Aktualizácia IsLoggedIn: {_isLoggedIn}");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(CanLogin));
+                OnPropertyChanged(nameof(CanLogout));
+            }
+        }
+        public string CurrentUserStatus => $"Prihlásený používateľ: {UserService.CurrentUser}";
+
+        public WeighingListViewModel WeighingsVM { get; } = new();
+
+        public void RefreshUser()
+        {
+            IsLoggedIn = UserService.CurrentUser != "Neprihlásený";
+            Console.WriteLine($"Aktualizácia IsLoggedIn: {IsLoggedIn}, CurrentUser: {UserService.CurrentUser}");
+            OnPropertyChanged(nameof(IsLoggedIn));
             OnPropertyChanged(nameof(CanLogin));
             OnPropertyChanged(nameof(CanLogout));
         }
+
+
     }
-
-    public bool CanLogin => !IsLoggedIn;
-    public bool CanLogout => IsLoggedIn;
-
-    public MainViewModel()
-    {
-        RefreshUser();
-    }
-
-    public void RefreshUser()
-    {
-        IsLoggedIn = UserService.CurrentUser != "Neprihlásený";
-        Console.WriteLine($"Aktualizácia IsLoggedIn: {IsLoggedIn}, CurrentUser: {UserService.CurrentUser}");
-        OnPropertyChanged(nameof(IsLoggedIn));
-        OnPropertyChanged(nameof(CanLogin));
-        OnPropertyChanged(nameof(CanLogout));
-    }
-
-
 }

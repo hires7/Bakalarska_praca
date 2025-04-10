@@ -11,6 +11,8 @@ public class UserService
     private const string ConnectionString = "Data Source=weighing.db;Version=3;";
 
     public static string CurrentUser => LoggedInUser?.Username ?? "Neprihlásený";
+    public static bool IsLoggedIn => LoggedInUser != null;
+
 
     public static User? LoggedInUser { get; private set; } = null;
 
@@ -174,4 +176,32 @@ public class UserService
         int rowsAffected = command.ExecuteNonQuery();
         return rowsAffected > 0;
     }
+
+    public static User? GetUserById(int id)
+    {
+        using var connection = new SQLiteConnection(ConnectionString);
+        connection.Open();
+
+        string sql = "SELECT Id, Username, PasswordHash, Role FROM Users WHERE Id = @id";
+        using var command = new SQLiteCommand(sql, connection);
+        command.Parameters.AddWithValue("@id", id);
+        using var reader = command.ExecuteReader();
+
+        if (reader.Read())
+        {
+            return new User
+            {
+                Id = reader.GetInt32(0),
+                Username = reader.GetString(1),
+                PasswordHash = reader.GetString(2),
+                Role = reader.GetString(3)
+            };
+        }
+
+        return null;
+    }
+
+
+
+
 }
