@@ -1,6 +1,5 @@
 ﻿using System.Data.SQLite;
 using System.Windows;
-using System.Xml.Linq;
 using Bakalarska_praca.Core.Models;
 using Bakalarska_praca.Data.Database;
 using BCrypt.Net;
@@ -11,7 +10,9 @@ public class UserService
 {
     private const string ConnectionString = "Data Source=weighing.db;Version=3;";
 
-    public static string CurrentUser { get; private set; } = "Neprihlásený";
+    public static string CurrentUser => LoggedInUser?.Username ?? "Neprihlásený";
+
+    public static User? LoggedInUser { get; private set; } = null;
 
     public bool ValidateUser(string username, string password)
     {
@@ -22,7 +23,7 @@ public class UserService
 
         if (BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
         {
-            CurrentUser = user.Username;
+            LoggedInUser = user;
             Console.WriteLine($"Prihlásený používateľ: {CurrentUser}");
             return true;
         }
@@ -30,11 +31,10 @@ public class UserService
         return false;
     }
 
-
     public static void Logout()
     {
-        CurrentUser = "Neprihlásený";
-        Console.WriteLine("Odhlasujem používateľa...");
+        Console.WriteLine($"Odhlasujem používateľa: {CurrentUser}");
+        LoggedInUser = null;
     }
 
     public User? GetUser(string username)
@@ -63,7 +63,7 @@ public class UserService
 
     public bool ChangePassword(string username, string oldPassword, string newPassword)
     {
-        using var connection = new SQLiteConnection("Data Source=weighing.db;Version=3;");
+        using var connection = new SQLiteConnection(ConnectionString);
         connection.Open();
 
         string sql = "SELECT PasswordHash FROM Users WHERE Username = @username";
@@ -78,8 +78,6 @@ public class UserService
         }
 
         string storedHash = result.ToString() ?? string.Empty;
-        Console.WriteLine($"Uložený hash v DB: {storedHash}");
-        Console.WriteLine($"Zadané staré heslo: {oldPassword}");
 
         if (!BCrypt.Net.BCrypt.Verify(oldPassword, storedHash))
         {
@@ -88,7 +86,6 @@ public class UserService
         }
 
         string newHash = BCrypt.Net.BCrypt.HashPassword(newPassword);
-        Console.WriteLine($"Nový hash: {newHash}");
 
         string updateSql = "UPDATE Users SET PasswordHash = @newPassword WHERE Username = @username";
         using var updateCommand = new SQLiteCommand(updateSql, connection);
@@ -99,12 +96,11 @@ public class UserService
         return rowsAffected > 0;
     }
 
-
     public static List<User> GetAllUsers()
     {
         List<User> users = new();
 
-        using var connection = new SQLiteConnection("Data Source=weighing.db;Version=3;");
+        using var connection = new SQLiteConnection(ConnectionString);
         connection.Open();
 
         string sql = "SELECT Id, Username, PasswordHash, Role FROM Users";
@@ -127,7 +123,7 @@ public class UserService
 
     public static bool AddUser(string username, string password, bool isAdmin)
     {
-        using var connection = new SQLiteConnection("Data Source=weighing.db;Version=3;");
+        using var connection = new SQLiteConnection(ConnectionString);
         connection.Open();
 
         string checkSql = "SELECT COUNT(*) FROM Users WHERE Username = @username";
@@ -141,7 +137,6 @@ public class UserService
         }
 
         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
-
         string role = isAdmin ? "Admin" : "User";
 
         string insertSql = "INSERT INTO Users (Username, PasswordHash, Role) VALUES (@username, @password, @role)";
@@ -177,13 +172,6 @@ public class UserService
         command.Parameters.AddWithValue("@id", user.Id);
 
         int rowsAffected = command.ExecuteNonQuery();
-
         return rowsAffected > 0;
     }
-
-
 }
-
-
-
-

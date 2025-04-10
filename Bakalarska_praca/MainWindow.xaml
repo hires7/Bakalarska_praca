@@ -19,8 +19,9 @@
             </MenuItem>
 
             <MenuItem Header="Váženie" IsEnabled="{Binding IsLoggedIn}">
-                <MenuItem Header="Nastaviť taru"/>
-                <MenuItem Header="Príjemka"/>
+                <MenuItem Header="Nastaviť taru" Click="SetTara_Click"/>
+                <MenuItem Header="Príjemka" Click="OpenIncomingWeighing_Click"/>
+                <MenuItem Header="Výdajka" Click="OpenOutgoingWeighing_Click"/>
             </MenuItem>
 
             <MenuItem Header="Nastavenia" IsEnabled="{Binding IsLoggedIn}">
@@ -30,7 +31,7 @@
 
 
         <StackPanel Orientation="Horizontal" Margin="10,35,10,499" Height="25">
-            <Button Content="Nastaviť taru" Width="100" />
+            <Button Content="Nastaviť taru" Width="100" Click="SetTara_Click"/>
             <Button Content="Príjemka" Width="100" />
             <Button Content="Výdajka" Width="100" />
             <Button Content="Upraviť váženie" Width="120" />

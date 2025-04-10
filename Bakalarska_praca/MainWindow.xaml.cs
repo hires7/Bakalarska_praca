@@ -69,6 +69,24 @@ namespace Bakalarska_praca
             trucksView.ShowDialog();
         }
 
+        private void SetTara_Click(object sender, RoutedEventArgs e)
+        {
+            var setTaraView = new SetTaraView();
+            setTaraView.ShowDialog();
+        }
+
+        private void OpenIncomingWeighing_Click(object sender, RoutedEventArgs e)
+        {
+            var view = new WeighingFormView(isIncoming: true);
+            view.ShowDialog();
+        }
+
+        private void OpenOutgoingWeighing_Click(object sender, RoutedEventArgs e)
+        {
+            var view = new WeighingFormView(isIncoming: false);
+            view.ShowDialog();
+        }
+
 
     }
 }

@@ -73,6 +73,28 @@ namespace Bakalarska_praca.Data.Database
 
             Console.WriteLine("Tabuľka TRUCKS vytvorená.");
 
+            string sqlWeighings = @"CREATE TABLE IF NOT EXISTS Weighings (
+                                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                Date TEXT NOT NULL,
+                                BruttoTime TEXT NOT NULL,
+                                TaraTime TEXT NOT NULL,
+                                IsIncoming INTEGER NOT NULL,
+                                Truck_Id INTEGER NOT NULL,
+                                Partner_Id INTEGER NOT NULL,
+                                Material_Id INTEGER NOT NULL,
+                                User_Id INTEGER NOT NULL,
+                                Brutto REAL NOT NULL,
+                                Tara REAL NOT NULL,
+                                Note TEXT,
+                                FOREIGN KEY (Truck_Id) REFERENCES Trucks(Id),
+                                FOREIGN KEY (Partner_Id) REFERENCES Partners(Id),
+                                FOREIGN KEY (Material_Id) REFERENCES Materials(Id),
+                                FOREIGN KEY (User_Id) REFERENCES Users(Id)
+                            );";
+            using var commandWeighings = new SQLiteCommand(sqlWeighings, connection);
+            commandWeighings.ExecuteNonQuery();
+
+            Console.WriteLine("Tabuľka WEIGHINGS vytvorená.");
 
         }
 

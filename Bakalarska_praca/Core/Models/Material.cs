@@ -8,3 +8,4 @@ public class Material
     public double Coefficient { get; set; }
     public bool IsActive { get; set; } = true;
 }
+
