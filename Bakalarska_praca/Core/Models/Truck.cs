@@ -9,9 +9,9 @@ namespace Bakalarska_praca.Core.Models
     public class Truck
     {
         public int Id { get; set; }
-        public string LicensePlate { get; set; } = string.Empty; // ŠPZ
+        public string LicensePlate { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public double Tara { get; set; } // hmotnosť v kg
+        public double Tara { get; set; }
         public bool IsInHouse { get; set; }
     }
 }

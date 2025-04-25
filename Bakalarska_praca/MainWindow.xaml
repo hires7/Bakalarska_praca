@@ -31,22 +31,22 @@
         </Menu>
 
         <StackPanel Orientation="Horizontal" Margin="10,35,10,499" Height="25">
-            <Button Content="Nastaviť taru" Width="100" Click="SetTara_Click"/>
-            <Button Content="Príjemka" Width="100"/>
-            <Button Content="Výdajka" Width="100"/>
-            <Button Content="Upraviť váženie" Width="120"/>
-            <Button Content="Vymazať váženie" Width="120"/>
-            <Button Content="Tlačiť vážny lístok" Width="150"/>
-            <Button Content="Tlačiť prehľad" Width="120"/>
+            <Button Content="Nastaviť taru" Width="124" Click="SetTara_Click" IsEnabled="{Binding IsLoggedIn}"/>
+            <Button Content="Príjemka" Width="124" IsEnabled="{Binding IsLoggedIn}"/>
+            <Button Content="Výdajka" Width="124" IsEnabled="{Binding IsLoggedIn}"/>
+            <Button Content="Upraviť váženie" Width="148" IsEnabled="{Binding IsLoggedIn}"/>
+            <Button Content="Vymazať váženie" Width="149" IsEnabled="{Binding IsLoggedIn}"/>
+            <Button Content="Tlačiť vážny lístok" Width="159" IsEnabled="{Binding IsLoggedIn}"/>
+            <Button Content="Tlačiť prehľad" Width="149" IsEnabled="{Binding IsLoggedIn}"/>
         </StackPanel>
 
-        <TabControl Margin="10,218,10,0">
+        <TabControl Margin="10,118,10,0">
             <TabItem Header="Dnešné váženia"/>
             <TabItem Header="Tento týždeň"/>
             <TabItem Header="Zadané obdobie"/>
         </TabControl>
 
-        <DataGrid ItemsSource="{Binding WeighingsVM.Weighings}" AutoGenerateColumns="False" Margin="20,246,20,32">
+        <DataGrid ItemsSource="{Binding WeighingsVM.Weighings}" AutoGenerateColumns="False" Margin="20,152,20,32">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Číslo" Binding="{Binding Id}" Width="50"/>
                 <DataGridTextColumn Header="Typ" Binding="{Binding Type}" Width="80"/>
