@@ -30,23 +30,21 @@
             </MenuItem>
         </Menu>
 
-        <StackPanel Orientation="Horizontal" Margin="10,35,10,499" Height="25">
-            <Button Content="Nastaviť taru" Width="124" Click="SetTara_Click" IsEnabled="{Binding IsLoggedIn}"/>
-            <Button Content="Príjemka" Width="124" IsEnabled="{Binding IsLoggedIn}"/>
-            <Button Content="Výdajka" Width="124" IsEnabled="{Binding IsLoggedIn}"/>
-            <Button Content="Upraviť váženie" Width="148" IsEnabled="{Binding IsLoggedIn}"/>
-            <Button Content="Vymazať váženie" Width="149" IsEnabled="{Binding IsLoggedIn}"/>
-            <Button Content="Tlačiť vážny lístok" Width="159" IsEnabled="{Binding IsLoggedIn}"/>
-            <Button Content="Tlačiť prehľad" Width="149" IsEnabled="{Binding IsLoggedIn}"/>
+        <StackPanel Orientation="Horizontal" Margin="10,48,10,0" Height="55" VerticalAlignment="Top">
+            <Button Content="Nastaviť taru" Width="180" Click="SetTara_Click" IsEnabled="{Binding IsLoggedIn}"/>
+            <Button Content="Príjemka" Width="180" IsEnabled="{Binding IsLoggedIn}"/>
+            <Button Content="Výdajka" Width="180" IsEnabled="{Binding IsLoggedIn}"/>
+            <Button Content="Tlačiť vážny lístok" Width="180" Click="PrintWeighingTicket_Click" IsEnabled="{Binding IsLoggedIn}"/>
+            <Button Content="Tlačiť prehľad" Width="180" IsEnabled="{Binding IsLoggedIn}" Click="PrintWeighingTicket_Click"/>
         </StackPanel>
 
         <TabControl Margin="10,118,10,0">
-            <TabItem Header="Dnešné váženia"/>
+            <TabItem Header="Všetky váženia"/>
             <TabItem Header="Tento týždeň"/>
             <TabItem Header="Zadané obdobie"/>
         </TabControl>
 
-        <DataGrid ItemsSource="{Binding WeighingsVM.Weighings}" AutoGenerateColumns="False" Margin="20,152,20,32">
+        <DataGrid x:Name="DataGridLow" ItemsSource="{Binding WeighingsVM.Weighings}" AutoGenerateColumns="False" Margin="20,152,20,32" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Číslo" Binding="{Binding Id}" Width="50"/>
                 <DataGridTextColumn Header="Typ" Binding="{Binding Type}" Width="80"/>

@@ -87,6 +87,15 @@ namespace Bakalarska_praca
             view.ShowDialog();
         }
 
+        private void PrintWeighingTicket_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedWeighing = (WeighingDisplayModel)DataGridLow.SelectedItem;
+            if (selectedWeighing != null)
+            {
+                WeighingReportGenerator.GenerateReport(selectedWeighing);
+            }
+        }
+
 
     }
 }
