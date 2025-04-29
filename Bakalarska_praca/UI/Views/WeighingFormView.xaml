@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Bakalarska_praca.UI.Views.WeighingFormView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Commodity - Príjem tovaru alebo plodiny" Height="600" Width="650"
+        Title="Príjem tovaru alebo plodiny" Height="600" Width="650"
         WindowStartupLocation="CenterScreen">
 
     <Grid Margin="10">
@@ -14,19 +14,16 @@
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <TextBlock Text="Dodávateľ:" Width="120" VerticalAlignment="Center"/>
                 <ComboBox ItemsSource="{Binding Partners}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedPartner}" Width="250"/>
-                <Button Content="+" Width="25" Margin="5,0,0,0"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <TextBlock Text="Vozidlo:" Width="120" VerticalAlignment="Center"/>
                 <ComboBox ItemsSource="{Binding Trucks}" DisplayMemberPath="LicensePlate" SelectedItem="{Binding SelectedTruck}" Width="250"/>
-                <Button Content="+" Width="25" Margin="5,0,0,0"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <TextBlock Text="Materiál:" Width="120" VerticalAlignment="Center"/>
                 <ComboBox ItemsSource="{Binding Materials}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedMaterial}" Width="250"/>
-                <Button Content="+" Width="25" Margin="5,0,0,0"/>
             </StackPanel>
 
             <GroupBox Header="Vstup naloženého vozidla" Margin="0,0,0,10">
