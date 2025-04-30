@@ -26,7 +26,7 @@ public class UserService
         if (BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
         {
             LoggedInUser = user;
-            Console.WriteLine($"Prihlásený používateľ: {CurrentUser}");
+            //Console.WriteLine($"Prihlásený používateľ: {CurrentUser}");
             return true;
         }
 
@@ -35,7 +35,7 @@ public class UserService
 
     public static void Logout()
     {
-        Console.WriteLine($"Odhlasujem používateľa: {CurrentUser}");
+        //.WriteLine($"Odhlasujem používateľa: {CurrentUser}");
         LoggedInUser = null;
     }
 
@@ -75,7 +75,7 @@ public class UserService
 
         if (result == null)
         {
-            Console.WriteLine("Používateľ neexistuje.");
+            //Console.WriteLine("Používateľ neexistuje.");
             return false;
         }
 
@@ -83,7 +83,7 @@ public class UserService
 
         if (!BCrypt.Net.BCrypt.Verify(oldPassword, storedHash))
         {
-            Console.WriteLine("Nesprávne staré heslo!");
+            //Console.WriteLine("Nesprávne staré heslo!");
             return false;
         }
 

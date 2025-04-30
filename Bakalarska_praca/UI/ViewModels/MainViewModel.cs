@@ -15,7 +15,7 @@ namespace Bakalarska_praca.UI.ViewModels
             set
             {
                 _isLoggedIn = value;
-                Console.WriteLine($"Aktualizácia IsLoggedIn: {_isLoggedIn}");
+                //Console.WriteLine($"Aktualizácia IsLoggedIn: {_isLoggedIn}");
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CanLogin));
                 OnPropertyChanged(nameof(CanLogout));
@@ -28,7 +28,7 @@ namespace Bakalarska_praca.UI.ViewModels
         public void RefreshUser()
         {
             IsLoggedIn = UserService.CurrentUser != "Neprihlásený";
-            Console.WriteLine($"Aktualizácia IsLoggedIn: {IsLoggedIn}, CurrentUser: {UserService.CurrentUser}");
+            //Console.WriteLine($"Aktualizácia IsLoggedIn: {IsLoggedIn}, CurrentUser: {UserService.CurrentUser}");
             OnPropertyChanged(nameof(IsLoggedIn));
             OnPropertyChanged(nameof(CanLogin));
             OnPropertyChanged(nameof(CanLogout));

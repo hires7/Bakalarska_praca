@@ -21,8 +21,8 @@ namespace Bakalarska_praca.UI.ViewModels
                 _selectedMaterial = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CanEditDelete));
-                Console.WriteLine($"SelectedMaterial zmenené: {(_selectedMaterial != null ? _selectedMaterial.Name : "null")}");
-                Console.WriteLine($"CanEditDelete: {CanEditDelete}");
+                //Console.WriteLine($"SelectedMaterial zmenené: {(_selectedMaterial != null ? _selectedMaterial.Name : "null")}");
+                //Console.WriteLine($"CanEditDelete: {CanEditDelete}");
                 ((RelayCommand)EditMaterialCommand).RaiseCanExecuteChanged();
                 ((RelayCommand)DeleteMaterialCommand).RaiseCanExecuteChanged();
 
@@ -35,7 +35,7 @@ namespace Bakalarska_praca.UI.ViewModels
             get
             {
                 bool result = SelectedMaterial != null;
-                Console.WriteLine($"CanEditDelete: {result}");
+                //Console.WriteLine($"CanEditDelete: {result}");
                 return result;
             }
         }
@@ -90,11 +90,11 @@ namespace Bakalarska_praca.UI.ViewModels
         {
             if (SelectedMaterial == null)
             {
-                Console.WriteLine("Žiadny materiál nie je vybraný!");
+                //Console.WriteLine("Žiadny materiál nie je vybraný!");
                 return;
             }
 
-            Console.WriteLine($"Otváram úpravu materiálu: {SelectedMaterial.Name}");
+            //Console.WriteLine($"Otváram úpravu materiálu: {SelectedMaterial.Name}");
             var editMaterialView = new EditMaterialView(SelectedMaterial);
             if (editMaterialView.ShowDialog() == true)
             {
@@ -107,7 +107,7 @@ namespace Bakalarska_praca.UI.ViewModels
         {
             if (SelectedMaterial == null)
             {
-                Console.WriteLine("Žiadny materiál nie je vybraný!");
+                //Console.WriteLine("Žiadny materiál nie je vybraný!");
                 return;
             }
 
@@ -116,7 +116,7 @@ namespace Bakalarska_praca.UI.ViewModels
 
             if (result == MessageBoxResult.Yes)
             {
-                Console.WriteLine($"Mažem materiál: {SelectedMaterial.Name}");
+                //Console.WriteLine($"Mažem materiál: {SelectedMaterial.Name}");
                 MaterialService.DeleteMaterial(SelectedMaterial.Id);
                 LoadMaterials();
             }

@@ -17,7 +17,7 @@ public partial class ChangePasswordView : Window
         if (DataContext is ChangePasswordViewModel viewModel)
         {
             viewModel.OldPassword = ((PasswordBox)sender).Password;
-            Console.WriteLine($"Zadané staré heslo: {viewModel.OldPassword}");
+            //Console.WriteLine($"Zadané staré heslo: {viewModel.OldPassword}");
         }
     }
 

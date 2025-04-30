@@ -29,7 +29,7 @@ namespace Bakalarska_praca
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             UserService.Logout();
-            Console.WriteLine("Používateľ odhlásený.");
+            //Console.WriteLine("Používateľ odhlásený.");
 
             _viewModel.RefreshUser();
         }
