@@ -78,13 +78,25 @@ namespace Bakalarska_praca
         private void OpenIncomingWeighing_Click(object sender, RoutedEventArgs e)
         {
             var view = new WeighingFormView(isIncoming: true);
-            view.ShowDialog();
+            //view.ShowDialog();
+            bool? result = view.ShowDialog();
+
+            if (result == true)
+            {
+                _viewModel.WeighingsVM.LoadTodaysWeighings(); // <== refresh dát
+            }
         }
 
         private void OpenOutgoingWeighing_Click(object sender, RoutedEventArgs e)
         {
             var view = new WeighingFormView(isIncoming: false);
-            view.ShowDialog();
+            //view.ShowDialog();
+            bool? result = view.ShowDialog();
+
+            if (result == true)
+            {
+                _viewModel.WeighingsVM.LoadTodaysWeighings(); // <== refresh dát
+            }
         }
 
         private void PrintWeighingTicket_Click(object sender, RoutedEventArgs e)

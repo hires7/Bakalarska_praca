@@ -14,7 +14,7 @@ namespace Bakalarska_praca.UI.ViewModels
             LoadTodaysWeighings();
         }
 
-        private void LoadTodaysWeighings()
+        public void LoadTodaysWeighings()
         {
             Weighings.Clear();
             var data = WeighingService.GetAllWeighings();

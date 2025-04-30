@@ -19,7 +19,7 @@ namespace Bakalarska_praca.Data.Database
             using var command = new SQLiteCommand(sql, connection);
             command.ExecuteNonQuery();
 
-            Console.WriteLine("Tabulka USERS vytvorena");
+            //Console.WriteLine("Tabulka USERS vytvorena");
 
             string sqlMaterials = @"CREATE TABLE IF NOT EXISTS Materials (
                                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,7 +32,7 @@ namespace Bakalarska_praca.Data.Database
             using var commandMaterials = new SQLiteCommand(sqlMaterials, connection);
             commandMaterials.ExecuteNonQuery();
 
-            Console.WriteLine("Tabuľka MATERIALS vytvorená");
+            //Console.WriteLine("Tabuľka MATERIALS vytvorená");
 
             string sqlDrivers = @"CREATE TABLE IF NOT EXISTS Drivers (
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -42,7 +42,7 @@ namespace Bakalarska_praca.Data.Database
             using var commandDrivers = new SQLiteCommand(sqlDrivers, connection);
             commandDrivers.ExecuteNonQuery();
 
-            Console.WriteLine("Tabuľka DRIVERS vytvorená");
+            //Console.WriteLine("Tabuľka DRIVERS vytvorená");
 
             string sqlPartners = @"CREATE TABLE IF NOT EXISTS Partners (
                                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -59,7 +59,7 @@ namespace Bakalarska_praca.Data.Database
 
             using var commandPartners = new SQLiteCommand(sqlPartners, connection);
             commandPartners.ExecuteNonQuery();
-            Console.WriteLine("Tabuľka PARTNERS vytvorená");
+            //Console.WriteLine("Tabuľka PARTNERS vytvorená");
 
             string sqlTrucks = @"CREATE TABLE IF NOT EXISTS Trucks (
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -71,7 +71,7 @@ namespace Bakalarska_praca.Data.Database
             using var commandTrucks = new SQLiteCommand(sqlTrucks, connection);
             commandTrucks.ExecuteNonQuery();
 
-            Console.WriteLine("Tabuľka TRUCKS vytvorená.");
+            //Console.WriteLine("Tabuľka TRUCKS vytvorená.");
 
             string sqlWeighings = @"CREATE TABLE IF NOT EXISTS Weighings (
                                 Id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -94,7 +94,7 @@ namespace Bakalarska_praca.Data.Database
             using var commandWeighings = new SQLiteCommand(sqlWeighings, connection);
             commandWeighings.ExecuteNonQuery();
 
-            Console.WriteLine("Tabuľka WEIGHINGS vytvorená.");
+            //Console.WriteLine("Tabuľka WEIGHINGS vytvorená.");
 
         }
 
@@ -115,7 +115,7 @@ namespace Bakalarska_praca.Data.Database
                 using var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@password", hash);
                 command.ExecuteNonQuery();
-                Console.WriteLine("Admin ucet vytvoreny");
+                //Console.WriteLine("Admin ucet vytvoreny");
             }
         }
 

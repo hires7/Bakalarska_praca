@@ -40,8 +40,6 @@
 
         <TabControl Margin="10,118,10,0">
             <TabItem Header="Všetky váženia"/>
-            <TabItem Header="Tento týždeň"/>
-            <TabItem Header="Zadané obdobie"/>
         </TabControl>
 
         <DataGrid x:Name="DataGridLow" ItemsSource="{Binding WeighingsVM.Weighings}" AutoGenerateColumns="False" Margin="20,152,20,32" IsReadOnly="True">
