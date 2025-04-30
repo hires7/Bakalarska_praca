@@ -13,5 +13,8 @@ namespace Bakalarska_praca.Core.Models
         public string Description { get; set; } = string.Empty;
         public double Tara { get; set; }
         public bool IsInHouse { get; set; }
+        public int? DriverId { get; set; }
+        public Driver? Driver { get; set; }
+
     }
 }

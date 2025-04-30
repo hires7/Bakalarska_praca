@@ -32,10 +32,10 @@
 
         <StackPanel Orientation="Horizontal" Margin="10,48,10,0" Height="55" VerticalAlignment="Top">
             <Button Content="Nastaviť taru" Width="180" Click="SetTara_Click" IsEnabled="{Binding IsLoggedIn}"/>
-            <Button Content="Príjemka" Width="180" IsEnabled="{Binding IsLoggedIn}"/>
-            <Button Content="Výdajka" Width="180" IsEnabled="{Binding IsLoggedIn}"/>
+            <Button Content="Príjemka" Width="180" IsEnabled="{Binding IsLoggedIn}" Click="OpenIncomingWeighing_Click"/>
+            <Button Content="Výdajka" Width="180" IsEnabled="{Binding IsLoggedIn}" Click="OpenOutgoingWeighing_Click"/>
             <Button Content="Tlačiť vážny lístok" Width="180" Click="PrintWeighingTicket_Click" IsEnabled="{Binding IsLoggedIn}"/>
-            <Button Content="Tlačiť prehľad" Width="180" IsEnabled="{Binding IsLoggedIn}" Click="PrintWeighingTicket_Click"/>
+            <Button Content="Tlačiť prehľad" Width="180" IsEnabled="False" Click="PrintWeighingTicket_Click"/>
         </StackPanel>
 
         <TabControl Margin="10,118,10,0">
@@ -59,7 +59,6 @@
         </DataGrid>
 
         <StatusBar VerticalAlignment="Bottom">
-            <StatusBarItem Content="{Binding CurrentUserStatus}" />
         </StatusBar>
     </Grid>
 </Window>

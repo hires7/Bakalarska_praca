@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO.Ports;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -10,6 +11,15 @@ namespace Bakalarska_praca.UI.ViewModels;
 
 public class EditTruckViewModel : BaseViewModel
 {
+    public ObservableCollection<Driver> Drivers { get; set; } = new(DriverService.GetAllDrivers());
+
+    private Driver? _selectedDriver;
+    public Driver? SelectedDriver
+    {
+        get => _selectedDriver;
+        set { _selectedDriver = value; OnPropertyChanged(); }
+    }
+
     private readonly Truck _originalTruck;
     private readonly Window _window;
     private readonly BackgroundWorker _worker;
@@ -31,6 +41,8 @@ public class EditTruckViewModel : BaseViewModel
         Description = truck.Description;
         Tara = truck.Tara.ToString();
         IsInHouse = truck.IsInHouse;
+        SelectedDriver = Drivers.FirstOrDefault(d => d.Id == truck.DriverId);
+
 
         SaveCommand = new RelayCommand(ExecuteSave, CanExecuteSave);
         LoadTaraCommand = new RelayCommand(_ => LoadTara());
@@ -57,6 +69,7 @@ public class EditTruckViewModel : BaseViewModel
         _originalTruck.Description = Description;
         _originalTruck.Tara = taraValue;
         _originalTruck.IsInHouse = IsInHouse;
+        _originalTruck.DriverId = SelectedDriver?.Id;
 
         TruckService.UpdateTruck(_originalTruck);
 

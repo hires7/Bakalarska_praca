@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO.Ports;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -10,6 +11,15 @@ namespace Bakalarska_praca.UI.ViewModels
 {
     public class AddTruckViewModel : BaseViewModel
     {
+        public ObservableCollection<Driver> Drivers { get; set; } = new(DriverService.GetAllDrivers());
+
+        private Driver? _selectedDriver;
+        public Driver? SelectedDriver
+        {
+            get => _selectedDriver;
+            set { _selectedDriver = value; OnPropertyChanged(); }
+        }
+
         private string _licensePlate = string.Empty;
         private string _description = string.Empty;
         private string _tara = string.Empty;
@@ -86,7 +96,8 @@ namespace Bakalarska_praca.UI.ViewModels
                 LicensePlate = LicensePlate,
                 Description = Description,
                 Tara = taraValue,
-                IsInHouse = IsInHouse
+                IsInHouse = IsInHouse,
+                DriverId = SelectedDriver?.Id
             };
 
             TruckService.AddTruck(truck);

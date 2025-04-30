@@ -20,6 +20,7 @@ namespace Bakalarska_praca.Core.Services
             command.Parameters.AddWithValue("@desc", truck.Description);
             command.Parameters.AddWithValue("@tara", truck.Tara);
             command.Parameters.AddWithValue("@inhouse", truck.IsInHouse ? 1 : 0);
+            command.Parameters.AddWithValue("@driverId", truck.DriverId.HasValue ? truck.DriverId : (object)DBNull.Value);
 
             command.ExecuteNonQuery();
         }
@@ -43,7 +44,9 @@ namespace Bakalarska_praca.Core.Services
                     LicensePlate = reader.GetString(1),
                     Description = reader.GetString(2),
                     Tara = reader.GetDouble(3),
-                    IsInHouse = reader.GetInt32(4) == 1
+                    IsInHouse = reader.GetInt32(4) == 1,
+                    DriverId = reader["Driver_Id"] != DBNull.Value ? Convert.ToInt32(reader["Driver_Id"]) : (int?)null
+
                 });
             }
 
