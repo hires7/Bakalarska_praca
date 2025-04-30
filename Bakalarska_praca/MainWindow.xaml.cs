@@ -83,7 +83,7 @@ namespace Bakalarska_praca
 
             if (result == true)
             {
-                _viewModel.WeighingsVM.LoadTodaysWeighings(); // <== refresh dát
+                _viewModel.WeighingsVM.LoadTodaysWeighings();
             }
         }
 
@@ -95,7 +95,7 @@ namespace Bakalarska_praca
 
             if (result == true)
             {
-                _viewModel.WeighingsVM.LoadTodaysWeighings(); // <== refresh dát
+                _viewModel.WeighingsVM.LoadTodaysWeighings();
             }
         }
 
