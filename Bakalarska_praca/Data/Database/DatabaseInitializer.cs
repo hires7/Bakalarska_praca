@@ -62,11 +62,15 @@ namespace Bakalarska_praca.Data.Database
             //Console.WriteLine("Tabuľka PARTNERS vytvorená");
 
             string sqlTrucks = @"CREATE TABLE IF NOT EXISTS Trucks (
-                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        LicensePlate TEXT NOT NULL,
-                        Description TEXT,
-                        Tara REAL NOT NULL,
-                        IsInHouse INTEGER NOT NULL);";
+                                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                LicensePlate TEXT NOT NULL,
+                                Description TEXT,
+                                Tara REAL NOT NULL,
+                                IsInHouse INTEGER NOT NULL,
+                                DriverId INTEGER,
+                                FOREIGN KEY (DriverId) REFERENCES Drivers(Id)
+                            );";
+
 
             using var commandTrucks = new SQLiteCommand(sqlTrucks, connection);
             commandTrucks.ExecuteNonQuery();
