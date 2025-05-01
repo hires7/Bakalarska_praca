@@ -12,6 +12,7 @@ public class DriversViewModel : BaseViewModel
     private Driver? _selectedDriver;
 
     public ObservableCollection<Driver> Drivers { get; set; } = new();
+    public bool IsAdmin => UserService.IsAdmin;
 
     public Driver? SelectedDriver
     {

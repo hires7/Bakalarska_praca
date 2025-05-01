@@ -12,6 +12,8 @@ namespace Bakalarska_praca.UI.ViewModels
         private Material? _selectedMaterial;
 
         public ObservableCollection<Material> Materials { get; set; } = new();
+        public bool IsAdmin => UserService.IsAdmin;
+
 
         public Material? SelectedMaterial
         {

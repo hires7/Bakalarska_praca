@@ -8,8 +8,8 @@
         <StackPanel>
             <Menu VerticalAlignment="Top">
                 <MenuItem Header="Pridať" Command="{Binding AddMaterialCommand}" />
-                <MenuItem Header="Upraviť" Command="{Binding EditMaterialCommand}" IsEnabled="{Binding CanEditDelete}" />
-                <MenuItem Header="Vymazať" Command="{Binding DeleteMaterialCommand}" IsEnabled="{Binding CanEditDelete}" />
+                <MenuItem Header="Upraviť" Command="{Binding EditMaterialCommand}" IsEnabled="{Binding IsAdmin}" />
+                <MenuItem Header="Vymazať" Command="{Binding DeleteMaterialCommand}" IsEnabled="{Binding IsAdmin}" />
             </Menu>
 
             <CheckBox Content="Zobraziť aj neaktívne" 

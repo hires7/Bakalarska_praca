@@ -7,8 +7,8 @@
     <Grid>
         <Menu VerticalAlignment="Top">
             <MenuItem Header="Pridať" Command="{Binding AddTruckCommand}" />
-            <MenuItem Header="Upraviť" Command="{Binding EditTruckCommand}" IsEnabled="{Binding CanEditDelete}" />
-            <MenuItem Header="Vymazať" Command="{Binding DeleteTruckCommand}" IsEnabled="{Binding CanEditDelete}" />
+            <MenuItem Header="Upraviť" Command="{Binding EditTruckCommand}" IsEnabled="{Binding IsAdmin}" />
+            <MenuItem Header="Vymazať" Command="{Binding DeleteTruckCommand}" IsEnabled="{Binding IsAdmin}" />
         </Menu>
 
         <DataGrid ItemsSource="{Binding Trucks}" 

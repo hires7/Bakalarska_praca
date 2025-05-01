@@ -12,6 +12,8 @@ public class UsersViewModel : BaseViewModel
     private User? _selectedUser;
 
     public ObservableCollection<User> Users { get; set; } = new();
+    public bool IsAdmin => UserService.IsAdmin;
+
 
     public User? SelectedUser
     {

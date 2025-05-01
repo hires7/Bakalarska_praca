@@ -7,8 +7,8 @@
     <Grid>
         <Menu VerticalAlignment="Top">
             <MenuItem Header="Pridať" Command="{Binding AddPartnerCommand}" />
-            <MenuItem Header="Upraviť" Command="{Binding EditPartnerCommand}" IsEnabled="{Binding CanEditDelete}" />
-            <MenuItem Header="Vymazať" Command="{Binding DeletePartnerCommand}" IsEnabled="{Binding CanEditDelete}" />
+            <MenuItem Header="Upraviť" Command="{Binding EditPartnerCommand}" IsEnabled="{Binding IsAdmin}" />
+            <MenuItem Header="Vymazať" Command="{Binding DeletePartnerCommand}" IsEnabled="{Binding IsAdmin}" />
         </Menu>
 
         <DataGrid ItemsSource="{Binding Partners}"

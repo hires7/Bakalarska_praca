@@ -11,6 +11,7 @@ namespace Bakalarska_praca.UI.ViewModels
     {
         private Partner? _selectedPartner;
         public ObservableCollection<Partner> Partners { get; set; } = new();
+        public bool IsAdmin => UserService.IsAdmin;
         public Partner? SelectedPartner
         {
             get => _selectedPartner;

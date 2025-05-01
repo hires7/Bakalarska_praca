@@ -12,6 +12,7 @@ public class UserService
 
     public static string CurrentUser => LoggedInUser?.Username ?? "Neprihlásený";
     public static bool IsLoggedIn => LoggedInUser != null;
+    public static bool IsAdmin => LoggedInUser?.Role == "Admin";
 
 
     public static User? LoggedInUser { get; private set; } = null;

@@ -6,10 +6,10 @@
 
     <Grid>
         <Menu VerticalAlignment="Top">
-            <MenuItem Header="Pridať" Command="{Binding AddUserCommand}"/>
-            <MenuItem Header="Upraviť" Command="{Binding EditUserCommand}" IsEnabled="{Binding CanEditDelete}"/>
-            <MenuItem Header="Vymazať" Command="{Binding DeleteUserCommand}" IsEnabled="{Binding CanEditDelete}"/>
-            <MenuItem Header="Zmeniť heslo" Command="{Binding ChangePasswordCommand}" IsEnabled="{Binding CanEditDelete}"/>
+            <MenuItem Header="Pridať" Command="{Binding AddUserCommand}" IsEnabled="{Binding IsAdmin}"/>
+            <MenuItem Header="Upraviť" Command="{Binding EditUserCommand}" IsEnabled="{Binding IsAdmin}"/>
+            <MenuItem Header="Vymazať" Command="{Binding DeleteUserCommand}" IsEnabled="{Binding IsAdmin}"/>
+            <MenuItem Header="Zmeniť heslo" Command="{Binding ChangePasswordCommand}" IsEnabled="{Binding IsAdmin}"/>
 
         </Menu>
 

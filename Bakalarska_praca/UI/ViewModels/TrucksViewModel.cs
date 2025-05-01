@@ -12,6 +12,8 @@ namespace Bakalarska_praca.UI.ViewModels
         private Truck? _selectedTruck;
 
         public ObservableCollection<Truck> Trucks { get; set; } = new();
+        public bool IsAdmin => UserService.IsAdmin;
+
 
         public Truck? SelectedTruck
         {
