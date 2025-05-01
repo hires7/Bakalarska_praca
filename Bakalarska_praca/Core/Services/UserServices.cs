@@ -35,7 +35,7 @@ public class UserService
 
     public static void Logout()
     {
-        //.WriteLine($"Odhlasujem používateľa: {CurrentUser}");
+        //Console.WriteLine($"Odhlasujem používateľa: {CurrentUser}");
         LoggedInUser = null;
     }
 
