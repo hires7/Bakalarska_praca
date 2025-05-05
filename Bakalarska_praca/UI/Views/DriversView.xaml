@@ -7,8 +7,8 @@
     <Grid>
         <Menu VerticalAlignment="Top">
             <MenuItem Header="Pridať" Command="{Binding AddDriverCommand}" />
-            <MenuItem Header="Upraviť" Command="{Binding EditDriverCommand}" IsEnabled="{Binding CanEditDelete}" />
-            <MenuItem Header="Vymazať" Command="{Binding DeleteDriverCommand}" IsEnabled="{Binding CanEditDelete}" />
+            <MenuItem Header="Upraviť" Command="{Binding EditDriverCommand}" IsEnabled="{Binding IsAdmin}" />
+            <MenuItem Header="Vymazať" Command="{Binding DeleteDriverCommand}" IsEnabled="{Binding IsAdmin}" />
         </Menu>
 
         <DataGrid ItemsSource="{Binding Drivers}" AutoGenerateColumns="False"

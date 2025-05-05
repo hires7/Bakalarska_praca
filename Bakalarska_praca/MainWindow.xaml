@@ -24,10 +24,6 @@
                 <MenuItem Header="Príjemka" Click="OpenIncomingWeighing_Click"/>
                 <MenuItem Header="Výdajka" Click="OpenOutgoingWeighing_Click"/>
             </MenuItem>
-
-            <MenuItem Header="Nastavenia" IsEnabled="{Binding IsLoggedIn}">
-                <MenuItem Header="O programe"/>
-            </MenuItem>
         </Menu>
 
         <StackPanel Orientation="Horizontal" Margin="10,48,10,0" Height="55" VerticalAlignment="Top">

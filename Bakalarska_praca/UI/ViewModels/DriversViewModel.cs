@@ -22,6 +22,8 @@ public class DriversViewModel : BaseViewModel
             _selectedDriver = value;
             OnPropertyChanged();
             OnPropertyChanged(nameof(CanEditDelete));
+            ((RelayCommand)EditDriverCommand).RaiseCanExecuteChanged();
+            ((RelayCommand)DeleteDriverCommand).RaiseCanExecuteChanged();
         }
     }
 

@@ -7,10 +7,10 @@
     <Border Background="White" Padding="20">
         <StackPanel>
             <TextBlock Text="Meno:" />
-            <TextBox Text="{Binding FirstName}" Margin="0,5,0,10" />
+            <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,10" />
 
             <TextBlock Text="Priezvisko:" />
-            <TextBox Text="{Binding LastName}" Margin="0,5,0,10" />
+            <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,10" />
 
             <Button Content="Uložiť"
                 Command="{Binding SaveCommand}"
